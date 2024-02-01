@@ -10,5 +10,7 @@ output "secrets_manager_secret_arn" {
   sensitive = true
 }
 
-
+output "db_instances_output" {
+  value = var.db_instances
+}
 

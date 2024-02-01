@@ -1,6 +1,3 @@
-variable "vpc_cidr_block" {
-  description = "CIDR block for the VPC"
-}
 variable "instance_tenancy" {
   description = "A tenancy option for instances launched into the VPC"
   type        = string
@@ -18,5 +15,46 @@ variable "enable_dns_support" {
 }
 
 #subnets
-variable "public_subnets" {}
-variable "private_subnets" {}
+
+variable "vpc_cidr_block" {
+  default = "172.16.0.0/16"
+}
+variable "public_subnets" {
+
+  default = {
+    public_snet_1 = {
+      cidr_block = "172.16.0.0/26",
+      az         = "us-west-2a",
+      tags = {
+        Project = "demo"
+      }
+    },
+    public_snet_2 = {
+      cidr_block = "172.16.0.64/26",
+      az         = "us-west-2b",
+      tags = {
+        Project = "demo"
+      }
+    }
+  }
+}
+variable "private_subnets" {
+
+  default = {
+    private_snet_1 = {
+      cidr_block = "172.16.0.128/26",
+      az         = "us-west-2a",
+      tags = {
+        Project = "demo"
+      }
+    },
+    private_snet_2 = {
+      cidr_block = "172.16.0.192/26",
+      az         = "us-west-2b",
+      tags = {
+        Project = "demo"
+      }
+    }
+  }
+}
+

@@ -1,6 +1,5 @@
 output "public_snet_1" {
   value = module.network.public_subnets.public_snet_1
-
 }
 output "public_snet_2" {
   value = module.network.public_subnets.public_snet_2
@@ -20,3 +19,8 @@ output "private_snet_2" {
 output "vpc_id" {
   value = module.network.vpc_id
 }
+output "image_id" {
+  description = "ID of the selected AMI"
+  value       = data.aws_ami.ami.id
+}
+

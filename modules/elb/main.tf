@@ -7,7 +7,7 @@ resource "aws_lb" "my_alb" {
   enable_deletion_protection       = var.lb_enable_deletion_protection
   enable_http2                     = true
   enable_cross_zone_load_balancing = true
-  security_groups                  = [aws_security_group.ALBSecurityGroup.id]
+  security_groups                  = var.alb_security_group_id
   tags = {
     Name = "LB"
   }
@@ -42,24 +42,5 @@ resource "aws_lb_listener" "my_alb_listener" {
 }
 
 
-# LB security group
-resource "aws_security_group" "ALBSecurityGroup" {
-  name        = "LB-security-group"
-  description = "Security group for the Application Load Balancer"
 
-  vpc_id = var.vpc_id
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
 
