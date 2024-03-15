@@ -26,7 +26,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 
 #SECRETS_MANAGER
 resource "aws_secretsmanager_secret" "secretdb" {
-  name = "secret7"
+  name = "secret1"
 }
 resource "aws_secretsmanager_secret_version" "secretdb" {
 

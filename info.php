@@ -11,7 +11,7 @@ $sdk = new Sdk([
 ]);
 
 // Specify the name of your secret in AWS Secrets Manager
-$secretName = 'secret7';//5.11 changes
+$secretName = 'secret1';//5.11 changes
 
 // Create a Secrets Manager client
 $secretsManager = $sdk->createSecretsManager();

@@ -15,7 +15,7 @@ variable "region" {
 
 source "amazon-ebs" "test" {
   ami_name = "test"    //-${local.timestamp}" !!
-  source_ami = "ami-09ac7e749b0a8d2a1"
+  source_ami = "ami-07bff6261f14c3a45" //"ami-09ac7e749b0a8d2a1""ami-0c7843ce70e666e51" //
   instance_type = "t2.micro"
   region = "us-west-2"
   ssh_username = "ec2-user"
