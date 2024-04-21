@@ -52,6 +52,7 @@ resource "aws_launch_template" "launch_templ" {
   name_prefix   = "launch_templ"
   image_id      = var.image_id
   instance_type = var.instance_type
+  key_name = "key.pem"
 
   # Attach the IAM instance profile to the Launch Template
   iam_instance_profile {
@@ -61,13 +62,13 @@ resource "aws_launch_template" "launch_templ" {
   network_interfaces {
     associate_public_ip_address = true
     subnet_id                   = var.public_snet_1
-    security_groups             = var.launch_template_security_group_id #[aws_security_group.SGtemplate.id]
+    security_groups             = var.launch_template_security_group_id
   }
 
   tag_specifications {
     resource_type = "instance"
     tags = {
-      Name = "instance" # Name for the EC2 instances
+      Name = "instance" 
     }
   }
 }
@@ -88,7 +89,6 @@ resource "aws_autoscaling_group" "ASG" {
   min_elb_capacity          = 0
   health_check_type         = var.health_check_type
   termination_policies      = ["Default"]
-  target_group_arns         = [var.target_group_arn] #[aws_lb_target_group.my_target_group.arn]
-  #key_name            = "my_key_name"
+  target_group_arns         = [var.target_group_arn]
 }
 

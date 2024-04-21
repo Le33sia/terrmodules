@@ -2,21 +2,20 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require 'vendor/autoload.php'; // Include the AWS SDK for PHP
+require 'vendor/autoload.php';
 
 use Aws\Sdk;
 
 $sdk = new Sdk([
-    'region' => 'us-west-2', // Replace with your desired AWS region
+    'region' => 'us-west-2', 
 ]);
 
-// Specify the name of your secret in AWS Secrets Manager
-$secretName = 'secret1';//5.11 changes
+$secretName = 'secret1';
 
-// Create a Secrets Manager client
+#Create a Secrets Manager client
 $secretsManager = $sdk->createSecretsManager();
 
-// Retrieve the secret value from AWS Secrets Manager
+#Retrieve the secret value from AWS Secrets Manager
 try {
     $result = $secretsManager->getSecretValue([
         'SecretId' => $secretName,
@@ -38,7 +37,7 @@ try {
     } else {
         echo "DB Connection Status: Successful";
     }
-// Hostname of the instance
+#Hostname of the instance
     echo "<br>";
     echo "Hostname: " . gethostname();
 } catch (Exception $e) {

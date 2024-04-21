@@ -91,8 +91,8 @@ resource "aws_security_group" "SGtemplate" {
     from_port = 80
     to_port   = 80
     protocol  = "tcp"
-    #cidr_blocks = ["0.0.0.0/0"] 
-    security_groups = [aws_security_group.ALBSecurityGroup.id] #[var.security_group_id]
+    cidr_blocks = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.ALBSecurityGroup.id]
   }
 
   ingress {
@@ -105,7 +105,7 @@ resource "aws_security_group" "SGtemplate" {
   egress {
     from_port   = 0
     to_port     = 0
-    protocol    = "-1" # -1 means all protocols
+    protocol    = "-1" 
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
@@ -121,7 +121,7 @@ resource "aws_security_group_rule" "allow_mysql" {
   to_port                  = 3306
   protocol                 = "tcp"
   security_group_id        = aws_security_group.db_SG.id
-  source_security_group_id = aws_security_group.SGtemplate.id #var.launch_template_security_group_id[0]
+  source_security_group_id = aws_security_group.SGtemplate.id 
 
 }
 resource "aws_security_group_rule" "allow_outgoing" {
